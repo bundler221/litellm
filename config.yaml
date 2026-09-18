@@ -1,0 +1,99 @@
+model_list:
+  # ===========================================================================
+  # 1. SMART / CODING / REASONING POOL (Alias: smart-coder)
+  # ===========================================================================
+
+  # Google AI Studio - Gemini 2.5 Flash
+  - model_name: smart-coder
+    litellm_params:
+      model: gemini/gemini-2.5-flash
+      api_key: "os.environ/GEMINI_API_KEY"
+      rpm: 15
+
+  # Mistral - Mistral Small
+  - model_name: smart-coder
+    litellm_params:
+      model: mistral/mistral-small-latest
+      api_key: "os.environ/MISTRAL_API_KEY"
+      rpm: 10
+
+  # NaraRouter (OpenAI-compatible)
+  - model_name: smart-coder
+    litellm_params:
+      model: openai/claude-3-5-sonnet-20241022
+      api_base: "https://router.bynara.id/v1"
+      api_key: "os.environ/NARAROUTER_API_KEY"
+
+  # xKiro (OpenAI-compatible)
+  - model_name: smart-coder
+    litellm_params:
+      model: openai/kimi-k1.5
+      api_base: "https://api.xkiro.com/v1"
+      api_key: "os.environ/XKIRO_API_KEY"
+
+  # LLM7.io (Pro Pool Routing)
+  - model_name: smart-coder
+    litellm_params:
+      model: openai/pro
+      api_base: "https://api.llm7.io/v1"
+      api_key: "os.environ/LLM7_API_KEY"
+
+  # ===========================================================================
+  # 2. FAST / HIGH-SPEED POOL (Alias: fast-coder)
+  # ===========================================================================
+
+  # Groq Key #1 - Llama 3.3 70B
+  - model_name: fast-coder
+    litellm_params:
+      model: groq/llama-3.3-70b-versatile
+      api_key: "os.environ/GROQ_API_KEY_1"
+      rpm: 30
+
+  # Groq Key #2 - Llama 3.3 70B (Rotates automatically)
+  - model_name: fast-coder
+    litellm_params:
+      model: groq/llama-3.3-70b-versatile
+      api_key: "os.environ/GROQ_API_KEY_2"
+      rpm: 30
+
+  # Groq Key #3 - Llama 3.3 70B (Rotates automatically)
+  - model_name: fast-coder
+    litellm_params:
+      model: groq/llama-3.3-70b-versatile
+      api_key: "os.environ/GROQ_API_KEY_3"
+      rpm: 30
+
+  # Cerebras - Llama 3.1 70B
+  - model_name: fast-coder
+    litellm_params:
+      model: cerebras/llama3.1-70b
+      api_key: "os.environ/CEREBRAS_API_KEY"
+      rpm: 30
+
+  # SambaNova - Llama 3.1 70B
+  - model_name: fast-coder
+    litellm_params:
+      model: openai/Meta-Llama-3.1-70B-Instruct
+      api_base: "https://api.sambanova.ai/v1"
+      api_key: "os.environ/SAMBANOVA_API_KEY"
+
+  # LLM7.io - Fast Tier
+  - model_name: fast-coder
+    litellm_params:
+      model: openai/fast
+      api_base: "https://api.llm7.io/v1"
+      api_key: "os.environ/LLM7_API_KEY"
+
+# ===========================================================================
+# ROUTING & RETRY POLICIES
+# ===========================================================================
+router_settings:
+  routing_strategy: "usage-based-routing"
+  num_retries: 5
+  timeout: 30
+  retry_after: 3
+  allowed_fails: 2
+  cooldown_time: 60
+
+general_settings:
+  master_key: "os.environ/LITELLM_MASTER_KEY"
